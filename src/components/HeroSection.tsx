@@ -31,7 +31,7 @@ const HERO_SLIDES = [
   })),
 ];
 
-const SLIDE_INTERVAL_MS = 3800;
+const SLIDE_INTERVAL_MS = 6800;
 
 export function HeroSection({
   onExploreGallery,
@@ -69,23 +69,27 @@ export function HeroSection({
                 key={currentSlide.id}
                 initial={{
                   opacity: 0,
-                  scale: shouldReduceMotion ? 1 : 1.07,
+                  scale: shouldReduceMotion ? 1 : 1.045,
                 }}
                 animate={{
                   opacity: 1,
                   scale: 1,
+                  transition: {
+                    opacity: {
+                      duration: shouldReduceMotion ? 0.3 : 2.2,
+                      ease: 'easeInOut',
+                    },
+                    scale: {
+                      duration: shouldReduceMotion ? 0 : 9.0,
+                      ease: 'easeOut',
+                    },
+                  },
                 }}
                 exit={{
                   opacity: 0,
-                }}
-                transition={{
-                  opacity: {
-                    duration: shouldReduceMotion ? 0.25 : 1.15,
-                    ease: [0.16, 1, 0.3, 1],
-                  },
-                  scale: {
-                    duration: shouldReduceMotion ? 0 : 4.6,
-                    ease: 'easeOut',
+                  transition: {
+                    duration: shouldReduceMotion ? 0.3 : 2.2,
+                    ease: 'easeInOut',
                   },
                 }}
                 className="absolute inset-0 will-change-transform"
