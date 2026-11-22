@@ -87,7 +87,7 @@ export function BookingSection({
 
   const minDate = useMemo(() => new Date().toISOString().split('T')[0], []);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setErrorMsg(null);
 
@@ -109,21 +109,37 @@ export function BookingSection({
 
     setIsSubmitting(true);
 
-    // Deterministic brief processing feedback
-    window.setTimeout(() => {
-      const code = Math.floor(1000 + Math.random() * 9000);
-      setReceipt({
-        referenceId: `BR-2026-${code}`,
-        fullName: trimmedName,
-        email: trimmedEmail,
-        company: company.trim() || 'Independent Practice',
-        serviceTitle: selectedService.title,
-        viewCount,
-        consultationDate,
-        estimatedDays,
+    try {
+      const response = await fetch('/api/bookings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fullName: trimmedName,
+          company: company.trim(),
+          email: trimmedEmail,
+          serviceTitle: selectedService.title,
+          viewCount,
+          cadStatus,
+          consultationDate,
+          targetDelivery,
+          notes: notes.trim(),
+          estimatedDays,
+        }),
       });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || 'Unable to submit booking request.');
+      }
+
+      setReceipt(data as BookingReceipt);
+    } catch (err) {
+      setErrorMsg(
+        err instanceof Error ? err.message : 'Unable to submit booking request. Please try again.'
+      );
+    } finally {
       setIsSubmitting(false);
-    }, 400);
+    }
   };
 
   const resetForm = () => {
