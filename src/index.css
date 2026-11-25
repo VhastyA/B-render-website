@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Outfit", system-ui, sans-serif;
-  --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-display: Arial, Helvetica, sans-serif;
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-mono: Arial, Helvetica, sans-serif;
 
   --color-obsidian: #0B0C0E;
   --color-charcoal: #121417;
@@ -18,15 +18,16 @@
 }
 
 @layer base {
-  html {
+  html,
+  body {
     background-color: #0B0C0E;
     color: #F4F2ED;
-    font-family: var(--font-sans);
+    font-family: Arial, Helvetica, sans-serif;
     scroll-behavior: smooth;
   }
 
   h1, h2, h3, h4 {
-    font-family: var(--font-display);
+    font-family: Arial, Helvetica, sans-serif;
     text-wrap: balance;
   }
 
