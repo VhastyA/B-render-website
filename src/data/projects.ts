@@ -1,3 +1,5 @@
+export type PageRoute = 'home' | 'projects' | 'services' | 'contact';
+
 export type ProjectCategory =
   | 'All'
   | 'Exterior'

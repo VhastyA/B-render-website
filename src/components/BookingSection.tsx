@@ -112,16 +112,18 @@ export function BookingSection({
   };
 
   return (
-    <section id="booking" className="bg-[#0B0C0E] py-16 lg:py-20">
+    <section className="bg-[#F7F6F3] dark:bg-[#0B0C0E] py-14 lg:py-20 transition-colors duration-200">
       <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-          <h2 className="text-2xl font-bold tracking-tight text-[#F4F2ED] sm:text-3xl">
+          <h1 className="text-2xl font-bold tracking-tight text-[#141414] dark:text-[#F4F2ED] sm:text-3xl">
             Contact &amp; Booking
-          </h2>
-          <span className="text-xs text-[#9E9A90]">studio@brenderstudio.com</span>
+          </h1>
+          <span className="text-xs text-[#5E5B54] dark:text-[#9E9A90]">
+            studio@brenderstudio.com
+          </span>
         </div>
 
-        <div className="mt-8 border border-white/15 bg-[#121417] p-6 sm:p-10">
+        <div className="mt-8 border border-black/15 dark:border-white/15 bg-white dark:bg-[#121417] p-6 sm:p-10">
           {receipt ? (
             <motion.div
               initial={{ opacity: 0, y: 8 }}
@@ -129,29 +131,33 @@ export function BookingSection({
               transition={{ duration: 0.2 }}
               className="space-y-6"
             >
-              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#C69C4E]">
+              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#9A7228] dark:text-[#C69C4E]">
                 <CheckCircle2 className="w-4 h-4" />
                 <span>Booking Confirmed · {receipt.referenceId}</span>
               </div>
 
-              <dl className="grid grid-cols-1 gap-4 border-y border-white/10 py-6 text-sm sm:grid-cols-2 lg:grid-cols-4">
+              <dl className="grid grid-cols-1 gap-4 border-y border-black/10 dark:border-white/10 py-6 text-sm sm:grid-cols-2 lg:grid-cols-4">
                 <div>
-                  <dt className="text-xs text-[#9E9A90]">Name</dt>
-                  <dd className="mt-1 font-medium text-[#F4F2ED]">{receipt.fullName}</dd>
+                  <dt className="text-xs text-[#5E5B54] dark:text-[#9E9A90]">Name</dt>
+                  <dd className="mt-1 font-medium text-[#141414] dark:text-[#F4F2ED]">
+                    {receipt.fullName}
+                  </dd>
                 </div>
                 <div>
-                  <dt className="text-xs text-[#9E9A90]">Service</dt>
-                  <dd className="mt-1 font-medium text-[#F4F2ED]">{receipt.serviceTitle}</dd>
+                  <dt className="text-xs text-[#5E5B54] dark:text-[#9E9A90]">Service</dt>
+                  <dd className="mt-1 font-medium text-[#141414] dark:text-[#F4F2ED]">
+                    {receipt.serviceTitle}
+                  </dd>
                 </div>
                 <div>
-                  <dt className="text-xs text-[#9E9A90]">Views</dt>
-                  <dd className="mt-1 font-medium text-[#F4F2ED] tabular-nums">
+                  <dt className="text-xs text-[#5E5B54] dark:text-[#9E9A90]">Views</dt>
+                  <dd className="mt-1 font-medium text-[#141414] dark:text-[#F4F2ED] tabular-nums">
                     {receipt.viewCount}
                   </dd>
                 </div>
                 <div>
-                  <dt className="text-xs text-[#9E9A90]">Date</dt>
-                  <dd className="mt-1 font-medium text-[#F4F2ED] tabular-nums">
+                  <dt className="text-xs text-[#5E5B54] dark:text-[#9E9A90]">Date</dt>
+                  <dd className="mt-1 font-medium text-[#141414] dark:text-[#F4F2ED] tabular-nums">
                     {receipt.consultationDate}
                   </dd>
                 </div>
@@ -160,7 +166,7 @@ export function BookingSection({
               <button
                 type="button"
                 onClick={resetForm}
-                className="min-h-[44px] border border-white/20 bg-[#0B0C0E] px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-[#F4F2ED] transition-colors hover:border-[#C69C4E] hover:text-[#C69C4E] cursor-pointer"
+                className="min-h-[44px] border border-black/20 dark:border-white/20 bg-[#F7F6F3] dark:bg-[#0B0C0E] px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-[#141414] dark:text-[#F4F2ED] transition-colors hover:border-[#9A7228] dark:hover:border-[#C69C4E] hover:text-[#9A7228] dark:hover:text-[#C69C4E] cursor-pointer"
               >
                 New Booking
               </button>
@@ -170,16 +176,19 @@ export function BookingSection({
               {errorMsg && (
                 <div
                   role="alert"
-                  className="flex items-center gap-2.5 border border-[#B84A2E]/60 bg-[#5C220E]/40 px-4 py-3 text-xs font-medium text-[#F4F2ED]"
+                  className="flex items-center gap-2.5 border border-[#B84A2E]/60 bg-[#5C220E]/15 dark:bg-[#5C220E]/40 px-4 py-3 text-xs font-medium text-[#752C13] dark:text-[#F4F2ED]"
                 >
-                  <AlertCircle className="h-4 w-4 shrink-0 text-[#E58A6E]" />
+                  <AlertCircle className="h-4 w-4 shrink-0 text-[#B84A2E] dark:text-[#E58A6E]" />
                   <span>{errorMsg}</span>
                 </div>
               )}
 
               <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
                 <div>
-                  <label htmlFor="booking-name" className="block text-xs text-[#9E9A90]">
+                  <label
+                    htmlFor="booking-name"
+                    className="block text-xs text-[#5E5B54] dark:text-[#9E9A90]"
+                  >
                     Name *
                   </label>
                   <input
@@ -189,12 +198,15 @@ export function BookingSection({
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder="Full Name"
-                    className="mt-2 min-h-[44px] w-full border border-white/15 bg-[#0B0C0E] px-3.5 py-2.5 text-sm text-[#F4F2ED] placeholder:text-[#9E9A90]/50 focus:border-[#C69C4E] focus:outline-none"
+                    className="mt-2 min-h-[44px] w-full border border-black/15 dark:border-white/15 bg-[#F7F6F3] dark:bg-[#0B0C0E] px-3.5 py-2.5 text-sm text-[#141414] dark:text-[#F4F2ED] placeholder:text-[#5E5B54]/60 dark:placeholder:text-[#9E9A90]/50 focus:border-[#9A7228] dark:focus:border-[#C69C4E] focus:outline-none"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="booking-email" className="block text-xs text-[#9E9A90]">
+                  <label
+                    htmlFor="booking-email"
+                    className="block text-xs text-[#5E5B54] dark:text-[#9E9A90]"
+                  >
                     Email *
                   </label>
                   <input
@@ -204,12 +216,15 @@ export function BookingSection({
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="name@studio.com"
-                    className="mt-2 min-h-[44px] w-full border border-white/15 bg-[#0B0C0E] px-3.5 py-2.5 text-sm text-[#F4F2ED] placeholder:text-[#9E9A90]/50 focus:border-[#C69C4E] focus:outline-none"
+                    className="mt-2 min-h-[44px] w-full border border-black/15 dark:border-white/15 bg-[#F7F6F3] dark:bg-[#0B0C0E] px-3.5 py-2.5 text-sm text-[#141414] dark:text-[#F4F2ED] placeholder:text-[#5E5B54]/60 dark:placeholder:text-[#9E9A90]/50 focus:border-[#9A7228] dark:focus:border-[#C69C4E] focus:outline-none"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="booking-company" className="block text-xs text-[#9E9A90]">
+                  <label
+                    htmlFor="booking-company"
+                    className="block text-xs text-[#5E5B54] dark:text-[#9E9A90]"
+                  >
                     Studio / Firm
                   </label>
                   <input
@@ -218,21 +233,24 @@ export function BookingSection({
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
                     placeholder="Optional"
-                    className="mt-2 min-h-[44px] w-full border border-white/15 bg-[#0B0C0E] px-3.5 py-2.5 text-sm text-[#F4F2ED] placeholder:text-[#9E9A90]/50 focus:border-[#C69C4E] focus:outline-none"
+                    className="mt-2 min-h-[44px] w-full border border-black/15 dark:border-white/15 bg-[#F7F6F3] dark:bg-[#0B0C0E] px-3.5 py-2.5 text-sm text-[#141414] dark:text-[#F4F2ED] placeholder:text-[#5E5B54]/60 dark:placeholder:text-[#9E9A90]/50 focus:border-[#9A7228] dark:focus:border-[#C69C4E] focus:outline-none"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
                 <div>
-                  <label htmlFor="booking-service" className="block text-xs text-[#9E9A90]">
+                  <label
+                    htmlFor="booking-service"
+                    className="block text-xs text-[#5E5B54] dark:text-[#9E9A90]"
+                  >
                     Service
                   </label>
                   <select
                     id="booking-service"
                     value={serviceId}
                     onChange={(e) => setServiceId(e.target.value as ServiceScopeId)}
-                    className="mt-2 min-h-[44px] w-full border border-white/15 bg-[#0B0C0E] px-3.5 py-2.5 text-sm text-[#F4F2ED] focus:border-[#C69C4E] focus:outline-none"
+                    className="mt-2 min-h-[44px] w-full border border-black/15 dark:border-white/15 bg-[#F7F6F3] dark:bg-[#0B0C0E] px-3.5 py-2.5 text-sm text-[#141414] dark:text-[#F4F2ED] focus:border-[#9A7228] dark:focus:border-[#C69C4E] focus:outline-none"
                   >
                     {STUDIO_SERVICES.map((service) => (
                       <option key={service.id} value={service.id}>
@@ -243,24 +261,24 @@ export function BookingSection({
                 </div>
 
                 <div>
-                  <span className="block text-xs text-[#9E9A90]">Views</span>
-                  <div className="mt-2 flex min-h-[44px] items-center justify-between border border-white/15 bg-[#0B0C0E] px-2">
+                  <span className="block text-xs text-[#5E5B54] dark:text-[#9E9A90]">Views</span>
+                  <div className="mt-2 flex min-h-[44px] items-center justify-between border border-black/15 dark:border-white/15 bg-[#F7F6F3] dark:bg-[#0B0C0E] px-2">
                     <button
                       type="button"
                       onClick={() => setViewCount((v) => Math.max(1, v - 1))}
                       aria-label="Decrease views"
-                      className="inline-flex h-9 w-9 items-center justify-center text-[#9E9A90] hover:text-[#F4F2ED] cursor-pointer"
+                      className="inline-flex h-9 w-9 items-center justify-center text-[#5E5B54] dark:text-[#9E9A90] hover:text-[#141414] dark:hover:text-[#F4F2ED] cursor-pointer"
                     >
                       <Minus className="h-4 w-4" />
                     </button>
-                    <span className="text-sm font-medium text-[#F4F2ED] tabular-nums">
+                    <span className="text-sm font-medium text-[#141414] dark:text-[#F4F2ED] tabular-nums">
                       {viewCount}
                     </span>
                     <button
                       type="button"
                       onClick={() => setViewCount((v) => Math.min(12, v + 1))}
                       aria-label="Increase views"
-                      className="inline-flex h-9 w-9 items-center justify-center text-[#9E9A90] hover:text-[#F4F2ED] cursor-pointer"
+                      className="inline-flex h-9 w-9 items-center justify-center text-[#5E5B54] dark:text-[#9E9A90] hover:text-[#141414] dark:hover:text-[#F4F2ED] cursor-pointer"
                     >
                       <Plus className="h-4 w-4" />
                     </button>
@@ -268,7 +286,10 @@ export function BookingSection({
                 </div>
 
                 <div>
-                  <label htmlFor="booking-consult-date" className="block text-xs text-[#9E9A90]">
+                  <label
+                    htmlFor="booking-consult-date"
+                    className="block text-xs text-[#5E5B54] dark:text-[#9E9A90]"
+                  >
                     Date *
                   </label>
                   <input
@@ -278,22 +299,25 @@ export function BookingSection({
                     min={minDate}
                     value={consultationDate}
                     onChange={(e) => setConsultationDate(e.target.value)}
-                    className="mt-2 min-h-[44px] w-full border border-white/15 bg-[#0B0C0E] px-3.5 py-2.5 text-sm text-[#F4F2ED] focus:border-[#C69C4E] focus:outline-none [color-scheme:dark]"
+                    className="mt-2 min-h-[44px] w-full border border-black/15 dark:border-white/15 bg-[#F7F6F3] dark:bg-[#0B0C0E] px-3.5 py-2.5 text-sm text-[#141414] dark:text-[#F4F2ED] focus:border-[#9A7228] dark:focus:border-[#C69C4E] focus:outline-none dark:[color-scheme:dark]"
                   />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="booking-notes" className="block text-xs text-[#9E9A90]">
+                <label
+                  htmlFor="booking-notes"
+                  className="block text-xs text-[#5E5B54] dark:text-[#9E9A90]"
+                >
                   Notes
                 </label>
                 <textarea
                   id="booking-notes"
-                  rows={2}
+                  rows={3}
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
                   placeholder="Project notes..."
-                  className="mt-2 w-full border border-white/15 bg-[#0B0C0E] px-3.5 py-2.5 text-sm text-[#F4F2ED] placeholder:text-[#9E9A90]/50 focus:border-[#C69C4E] focus:outline-none"
+                  className="mt-2 w-full border border-black/15 dark:border-white/15 bg-[#F7F6F3] dark:bg-[#0B0C0E] px-3.5 py-2.5 text-sm text-[#141414] dark:text-[#F4F2ED] placeholder:text-[#5E5B54]/60 dark:placeholder:text-[#9E9A90]/50 focus:border-[#9A7228] dark:focus:border-[#C69C4E] focus:outline-none"
                 />
               </div>
 

@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
-import { HERO_RENDER, RENDER_PROJECTS } from '../data/projects';
+import { HERO_RENDER, PageRoute, RENDER_PROJECTS } from '../data/projects';
 import { ResilientImage } from './ResilientImage';
 
 interface HeroSectionProps {
-  onExploreGallery: () => void;
-  onExploreServices: () => void;
+  onNavigate: (page: PageRoute) => void;
 }
 
 const HERO_SLIDES = [
@@ -25,10 +24,7 @@ const HERO_SLIDES = [
 
 const SLIDE_INTERVAL_MS = 6800;
 
-export function HeroSection({
-  onExploreGallery,
-  onExploreServices,
-}: HeroSectionProps) {
+export function HeroSection({ onNavigate }: HeroSectionProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const shouldReduceMotion = useReducedMotion();
 
@@ -49,10 +45,10 @@ export function HeroSection({
   const currentSlide = HERO_SLIDES[activeIndex];
 
   return (
-    <section id="top" className="border-b border-white/10 bg-[#0B0C0E] pt-6 pb-14 lg:pt-8 lg:pb-16">
+    <section className="bg-[#F7F6F3] dark:bg-[#0B0C0E] pt-8 pb-16 lg:pt-10 lg:pb-24 transition-colors duration-200">
       <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
         {/* Aligned crisp rectangular 3D render showcase */}
-        <div className="relative aspect-[16/9] max-h-[68vh] w-full overflow-hidden border border-white/15 bg-[#121417]">
+        <div className="relative aspect-[16/9] max-h-[70vh] w-full overflow-hidden border border-black/15 dark:border-white/15 bg-[#EFECE6] dark:bg-[#121417]">
           <AnimatePresence mode="sync" initial={false}>
             <motion.div
               key={currentSlide.id}
@@ -94,26 +90,33 @@ export function HeroSection({
           </AnimatePresence>
         </div>
 
-        {/* Minimal, direct studio title and navigation links */}
+        {/* Minimal, direct studio title and multi-page links */}
         <div className="mt-10 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <h1 className="text-2xl font-bold tracking-tight text-[#F4F2ED] sm:text-3xl">
-            <span className="text-[#C69C4E]">B-Render</span> Architectural Studio
+          <h1 className="text-2xl font-bold tracking-tight text-[#141414] dark:text-[#F4F2ED] sm:text-3xl">
+            <span className="text-[#9A7228] dark:text-[#C69C4E]">B-Render</span> Architectural Studio
           </h1>
 
-          <div className="flex items-center gap-8">
+          <div className="flex flex-wrap items-center gap-8">
             <button
               type="button"
-              onClick={onExploreGallery}
-              className="border-b border-white/30 pb-1 text-sm font-medium text-[#F4F2ED] transition-colors hover:border-[#C69C4E] hover:text-[#C69C4E] cursor-pointer"
+              onClick={() => onNavigate('projects')}
+              className="border-b border-black/30 dark:border-white/30 pb-1 text-sm font-medium text-[#141414] dark:text-[#F4F2ED] transition-colors hover:border-[#9A7228] dark:hover:border-[#C69C4E] hover:text-[#9A7228] dark:hover:text-[#C69C4E] cursor-pointer"
             >
               Projects
             </button>
             <button
               type="button"
-              onClick={onExploreServices}
-              className="border-b border-[#C69C4E] pb-1 text-sm font-medium text-[#C69C4E] transition-colors hover:border-[#F4F2ED] hover:text-[#F4F2ED] cursor-pointer"
+              onClick={() => onNavigate('services')}
+              className="border-b border-[#9A7228] dark:border-[#C69C4E] pb-1 text-sm font-medium text-[#9A7228] dark:text-[#C69C4E] transition-colors hover:border-[#141414] dark:hover:border-[#F4F2ED] hover:text-[#141414] dark:hover:text-[#F4F2ED] cursor-pointer"
             >
               Explore Our Services
+            </button>
+            <button
+              type="button"
+              onClick={() => onNavigate('contact')}
+              className="border-b border-black/30 dark:border-white/30 pb-1 text-sm font-medium text-[#141414] dark:text-[#F4F2ED] transition-colors hover:border-[#9A7228] dark:hover:border-[#C69C4E] hover:text-[#9A7228] dark:hover:text-[#C69C4E] cursor-pointer"
+            >
+              Contact
             </button>
           </div>
         </div>
